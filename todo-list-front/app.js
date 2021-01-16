@@ -47,14 +47,14 @@ function generisiNoviID(){
 function zavrsiZadatak(index){
     zadaci[index].zavrseno = !(zadaci[index].zavrseno);
     
-	//$('#loading').modal('show');
+	$('#loading').modal('show');
 	$.ajax({ 
         type: "POST",
         url: api_route + '/complete_task.php',
         data: { index: index, status: (zadaci[index].zavrseno) },
         success: (response) => {
             $('#red_'+index).toggleClass('zavrseno');
-			//$('#loading').modal('hide');
+			setTimeout(() => {$('#loading').modal('hide')}, 0);
         }
     });
     // prikaziZadatke();
