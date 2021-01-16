@@ -1,6 +1,7 @@
 var zadaci = [];
 var api_route = "../todo-list-back/api";
 let tabela_body = $('#tabela_svih_body');
+var pretraga = false;
 
 function citajZadatke(){
 	$('#loading').modal('show');
@@ -69,7 +70,9 @@ function ukloniZadatak(index){
         data: { index: index },
         success: (response) => {
             zadaci.splice(index, 1);
-			 prikaziZadatke();
+			prikaziZadatke();
+			
+			 if(pretraga) $('#pretraga_btn').trigger('click'); 
 			 setTimeout(() => {$('#loading').modal('hide')}, 0);
         }
 		});  
@@ -102,7 +105,10 @@ function isprazniPolja(tip){
 }
 
 function prikazi_rezultate_preatrage(niz_indeksa){
-	$('#ponisti_pretragu_btn').removeAttr('hidden');
+	if($('#pretraga_tekst').val() || $('#pretraga_opis').val() || $('#pretraga_zavrsen').val()){
+		$('#ponisti_pretragu_btn').removeAttr('hidden');
+		pretraga = true;
+	}
 	tabela_body.children().css({display:''});
 	document.getElementById('broj').innerHTML = niz_indeksa.length;	
 	tabela_body.children().each((index) => {
@@ -112,6 +118,7 @@ function prikazi_rezultate_preatrage(niz_indeksa){
 }
 
 function ponisti_pretragu(){
+	pretraga = false;
 	tabela_body.children().css({display:''});
 	izbroji_ih();
 	$('#pretraga_tekst').val('');
@@ -139,6 +146,7 @@ document.getElementById('dodaj_novi_forma').addEventListener('submit', function(
         success: (result) => {
             if(result == "OK"){
 				zadaci.push(novi_zadatak);
+				ponisti_pretragu();
                 prikaziZadatke();
                 $("#modal_dodavanje").modal('hide');
                 isprazniPolja('dodavanje');
@@ -168,6 +176,8 @@ document.getElementById('izmjena_zadatka_forma').addEventListener('submit', func
                 zadaci[index].tekst = tekst;
 				zadaci[index].opis = opis;
 				prikaziZadatke();
+				if(pretraga)  $('#pretraga_btn').trigger('click');
+
 				$("#modal_izmjena").modal('hide');
 				isprazniPolja('izmjena');
 				 setTimeout(() => {$('#loading').modal('hide')}, 0);
