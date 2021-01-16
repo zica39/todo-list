@@ -1,0 +1,22 @@
+table{
+    /* border: 1px solid lightgrey ; */
+}
+
+#dodaj_novi{
+    margin-top: 30px;
+}
+
+tr.zavrseno{
+    background-color:#d4edda;
+}
+.bd-example-modal-lg .modal-dialog{
+    display: table;
+    position: relative;
+    margin: 0 auto;
+    top: calc(50% - 24px);
+  }
+
+.bd-example-modal-lg .modal-dialog .modal-content{
+	background-color: transparent;
+	border: none;
+}
