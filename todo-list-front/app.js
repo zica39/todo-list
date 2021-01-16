@@ -153,6 +153,7 @@ document.getElementById('dodaj_novi_forma').addEventListener('submit', function(
 				 setTimeout(() => {$('#loading').modal('hide')}, 0);
             }else{
                 alert(result);
+				setTimeout(() => {$('#loading').modal('hide')}, 0);
             }
         }    
     });
@@ -183,6 +184,7 @@ document.getElementById('izmjena_zadatka_forma').addEventListener('submit', func
 				 setTimeout(() => {$('#loading').modal('hide')}, 0);
             }else{
                 alert(result);
+				setTimeout(() => {$('#loading').modal('hide')}, 0);
             }
         }    
     });
@@ -213,6 +215,7 @@ document.getElementById('pretraga_forma').addEventListener('submit', function(e)
 				 setTimeout(() => {$('#loading').modal('hide')}, 0);
             }else{
                 alert(result);
+				setTimeout(() => {$('#loading').modal('hide')}, 0);
             }
         }    
     });
