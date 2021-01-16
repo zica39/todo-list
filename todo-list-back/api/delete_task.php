@@ -7,7 +7,7 @@
         exit("Greska 1 - nepravilan index");
     }
    
-    unset($todos[$index]);
+	array_splice ($todos, $index, 1);
 
 	if( file_put_contents( '../todo.db', json_encode($todos) ) ){
 		exit("OK");
